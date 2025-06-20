@@ -7,25 +7,25 @@ This is a modular and scalable backend API for a real estate management platform
 ## 📁 Project Structure
 
 .
-├── API_Gateway/ # Entry point and API aggregation (optional for microservices)
-├── Auth_service/ # Handles authentication and user registration
+├── API_Gateway/ 
+├── Auth_service/ 
 │ ├── auth.py
 │ ├── models.py
-├── Database/ # DB connection and table definitions
+├── Database/ 
 │ ├── Data/
 │ ├── database.py
 │ ├── Tables.py
 │ ├── Database_connection.py
-├── Inquiry/ # Handles user inquiries (planned)
+├── Inquiry/ 
 │ ├── inquiry.py
 │ ├── models.py
-├── Notification/ # For sending alerts and messages (planned)
+├── Notification/ 
 │ ├── notification.py
 │ ├── models.py
-├── Review/ # For user/project reviews (planned)
+├── Review/ 
 │ ├── review.py
 │ ├── models.py
-├── Search/ # Search functionality for users/projects
+├── Search/ 
 │ ├── search.py
 │ ├── models.py
 ├── Users/
@@ -36,9 +36,9 @@ This is a modular and scalable backend API for a real estate management platform
 │ │ ├── customer.py
 │ │ ├── models.py
 │ ├── State Agent/
-│ ├── agent.py # Recommended name
+│ ├── agent.py 
 │ ├── models.py
-├── main.py # Main FastAPI app entrypoint
+├── main.py 
 ├── requirements.txt # Python dependencies list
 ---
 
