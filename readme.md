@@ -36,12 +36,10 @@ This is a modular and scalable backend API for a real estate management platform
 │ │ ├── customer.py
 │ │ ├── models.py
 │ ├── State Agent/
-│ ├── agent.py (recommended name)
+│ ├── agent.py # Recommended name
 │ ├── models.py
-├── main.py # Main FastAPI app
-├── requirements.txt # Dependencies list
-
-
+├── main.py # Main FastAPI app entrypoint
+├── requirements.txt # Python dependencies list
 ---
 
 ## 🚀 Features
