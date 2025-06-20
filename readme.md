@@ -6,40 +6,7 @@ This is a modular and scalable backend API for a real estate management platform
 
 ## 📁 Project Structure
 
-.
-├── API_Gateway 
-├── Auth_service
-│ ├── auth.py
-│ ├── models.py
-├── Database/ 
-│ ├── Data/
-│ ├── database.py
-│ ├── Tables.py
-│ ├── Database_connection.py
-├── Inquiry/ 
-│ ├── inquiry.py
-│ ├── models.py
-├── Notification/ 
-│ ├── notification.py
-│ ├── models.py
-├── Review/ 
-│ ├── review.py
-│ ├── models.py
-├── Search/ 
-│ ├── search.py
-│ ├── models.py
-├── Users/
-│ ├── Builder/
-│ │ ├── builder.py
-│ │ ├── models.py
-│ ├── Customer/
-│ │ ├── customer.py
-│ │ ├── models.py
-│ ├── State Agent/
-│ ├── agent.py 
-│ ├── models.py
-├── main.py 
-├── requirements.txt # Python dependencies list
+<pre lang="markdown"> ```bash . ├── API_Gateway/ # Entry point and API aggregation (optional for microservices) ├── Auth_service/ # Handles authentication and user registration │ ├── auth.py │ ├── models.py ├── Database/ # DB connection and table definitions │ ├── Data/ │ ├── database.py │ ├── Tables.py │ ├── Database_connection.py ├── Inquiry/ # Handles user inquiries (planned) │ ├── inquiry.py │ ├── models.py ├── Notification/ # For sending alerts and messages (planned) │ ├── notification.py │ ├── models.py ├── Review/ # For user/project reviews (planned) │ ├── review.py │ ├── models.py ├── Search/ # Search functionality for users/projects │ ├── search.py │ ├── models.py ├── Users/ │ ├── Builder/ │ │ ├── builder.py │ │ ├── models.py │ ├── Customer/ │ │ ├── customer.py │ │ ├── models.py │ ├── State Agent/ │ ├── agent.py # Recommended name │ ├── models.py ├── main.py # Main FastAPI app ├── requirements.txt # Dependencies list ``` </pre>
 ---
 
 ## 🚀 Features
