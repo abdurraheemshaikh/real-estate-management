@@ -7,8 +7,8 @@ This is a modular and scalable backend API for a real estate management platform
 ## 📁 Project Structure
 
 .
-├── API_Gateway/ 
-├── Auth_service/ 
+├── API_Gateway 
+├── Auth_service
 │ ├── auth.py
 │ ├── models.py
 ├── Database/ 
