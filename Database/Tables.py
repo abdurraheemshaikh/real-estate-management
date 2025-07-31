@@ -6,6 +6,31 @@ from Database.database import Base
 from pydantic import BaseModel, EmailStr, Field
 from typing import Optional
 
+class SavedItem(Base):
+    __tablename__ = 'saved_items'
+
+    id = Column(Integer, primary_key=True, index=True)
+    customer_id = Column(Integer, nullable=False)
+    project_id = Column(Integer, ForeignKey("projects.id"), nullable=False)
+    saved_at = Column(DateTime, default=datetime.utcnow)
+
+    project = relationship("Project")
+
+class Message(Base):
+    __tablename__ = "messages"
+
+    id = Column(Integer, primary_key=True)
+    builder_id = Column(Integer, ForeignKey("builders.id"), nullable=False)
+    customer_id = Column(Integer,nullable=False)  # Assuming customer_id is an integer
+    customer_name = Column(String(100), nullable=False)  # Name of the customer
+    sender = Column(String, nullable=False)  # 'Customer' or 'Builder'
+    message = Column(Text, nullable=False)
+    timestamp = Column(DateTime, nullable=False)
+    read = Column(Boolean, default=False)
+
+    
+    builders= relationship("Builder", back_populates="messages")
+
 class User(Base):
     __tablename__ = "users"
 
@@ -21,8 +46,7 @@ class User(Base):
 class Builder(Base):
     __tablename__ = "builders"
 
-    id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    id = Column(Integer, ForeignKey("users.id"), nullable=False,unique=True,primary_key=True)
     username = Column(String(50), unique=True, nullable=False)
     company_name = Column(String(100), nullable=False)
     phone = Column(String(20), nullable=False)
@@ -38,22 +62,30 @@ class Builder(Base):
 
     user = relationship("User", backref="builders")
     projects = relationship("Project", back_populates="builder")
+    messages = relationship("Message", back_populates="builders", cascade="all, delete-orphan")
 
+from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey, Float
+from sqlalchemy.orm import relationship
+from .database import Base  # adjust import based on your project structure
 
 class Project(Base):
     __tablename__ = "projects"
 
     id = Column(Integer, primary_key=True, index=True)
-    builder_id = Column(Integer, ForeignKey("builders.id"))
+    builder_id = Column(Integer, ForeignKey("builders.id"), nullable=False)
     title = Column(String(100), nullable=False)
     description = Column(Text)
     location = Column(String(100))
-    start_date = Column(DateTime)
-    end_date = Column(DateTime)
-    image_url = Column(String(255))
+    city= Column(String(50))
+    created_at = Column(DateTime, default=datetime.utcnow)
+    price = Column(Float, nullable=True)
+    bedrooms = Column(Integer, nullable=True)
+    bathrooms = Column(Integer, nullable=True)
+    sqft = Column(Integer, nullable=True)
 
     builder = relationship("Builder", back_populates="projects")
     images = relationship("ProjectImage", back_populates="project")
+
 
 
 class ProjectImage(Base):
@@ -81,3 +113,16 @@ class Agent(Base):
     is_verified = Column(Boolean, default=False)
 
     user = relationship("User", backref="agents")
+
+
+class Review(Base):
+    __tablename__ = "reviews"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    reviewer_name= Column(Text, nullable=True)
+    comment = Column(Text, nullable=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+    # Relationship to user
+    user = relationship("User", backref="reviews")

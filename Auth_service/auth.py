@@ -10,7 +10,7 @@ from jose import JWTError, jwt
 
 from Database.Database_connection import db_dependency
 from Database.Tables import User
-from Auth_service.models import create_access_token,CreateUserRequest,bcrypt_context,UserLoginRequest,Token
+from Auth_service.models import create_access_token,CreateUserRequest,bcrypt_context,UserLoginRequest,Token ,validate_password_strength
 
 # Router definition
 router = APIRouter(
@@ -23,7 +23,7 @@ async def create_user(db: db_dependency, user: CreateUserRequest):
     existing_user = db.query(User).filter(User.username == user.username).first()
     if existing_user:
         raise HTTPException(status_code=400, detail="Username already registered")
-
+    validate_password_strength(user.password)
     new_user = User(
         username=user.username,
         email=user.email,
@@ -42,8 +42,10 @@ async def create_user(db: db_dependency, user: UserLoginRequest):
     if existing_user:
         if not bcrypt_context.verify(user.password, existing_user.hashed_password):
             raise HTTPException(status_code=400, detail="Incorrect password")
+        if existing_user.role != user.role:
+            raise HTTPException(status_code=404, detail="Not a ")
         access_token = create_access_token(username=existing_user.username, user_id=existing_user.id)
-        return Token(access_token=access_token, token_type="bearer")
+        return Token(access_token=access_token, token_type="bearer",id=existing_user.id)
     else: 
         raise HTTPException(status_code=400, detail="Incorrect Username")   
 

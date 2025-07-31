@@ -28,19 +28,21 @@ oauth2_bearer = OAuth2PasswordBearer(tokenUrl="/auth/login")
 class Token(BaseModel):
     access_token: str
     token_type: str
+    id: int
 
 def validate_password_strength(password: str) -> str:
     if not any(c.isupper() for c in password):
-        raise ValueError("Password must contain at least one uppercase letter")
+        raise HTTPException(status_code=401, detail="Password must contain at least one uppercase letter")
+    
     if not any(c in "!@#$%^&*(),.?\":{}|<>" for c in password):
-        raise ValueError("Password must contain at least one special character")
+        raise HTTPException(status_code=401, detail="Password must contain at least one special character")
     return password
 
 class CreateUserRequest(BaseModel):
     username: str = Field(..., pattern=r"^[a-zA-Z0-9_]+$", max_length=50)
     email: EmailStr
     password: str
-    role: Literal["customer", "builder", "agent"] = "customer"
+    role: Literal["customer", "builder", "agent"]
 
     @field_validator("password")
     @classmethod
@@ -50,6 +52,7 @@ class CreateUserRequest(BaseModel):
 class UserLoginRequest(BaseModel):
     username: str = Field(..., pattern=r"^[a-zA-Z0-9_]+$", max_length=50)
     password: str = Field(..., min_length=8)
+    role: Literal["customer", "builder", "agent"] = "customer"
 
     @field_validator("password")
     @classmethod
