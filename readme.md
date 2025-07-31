@@ -42,15 +42,41 @@ _Built with the tools and technologies:_
 
 ## Overview
 
-**Real-estate-management** is a comprehensive platform combining a high-performance FastAPI backend with a modular, React-based frontend. It empowers developers to build scalable, secure, and user-friendly real estate applications with ease.
+### Real-estate-management is a comprehensive web application designed to streamline and enhance the experience of managing real estate assets. It combines a high-performance FastAPI backend with a modular React-based frontend. The platform is ideal for real estate businesses, agents, and clients to interact with listings, communicate, and handle transactions efficiently.
 
-### Core Features:
-- 🧩 **Modular Architecture**: Seamless integration of authentication, project management, and role-based access.
-- 🎨 **Rich UI Components**: Reusable, accessible, and responsive components built with Tailwind CSS and Radix UI primitives.
-- 🔒 **Secure Authentication**: JWT-based user verification and role management for robust security.
-- 🔍 **Dynamic Search & Data Handling**: Efficient management of listings, reviews, messages, and user profiles.
-- 🚀 **Scalability & Performance**: Optimized for high throughput and maintainability across complex real estate workflows.
+## ✨ Core Features and Functions
+🧩 Modular Architecture
+Cleanly separated frontend and backend modules allow easy extension and maintenance.
 
+## 🧑‍💼 User Roles & Authentication
+Secure JWT-based sign-up, login, and role-based access for Admins, Property Managers, and Customers.
+
+## 🏘️ Property Listings Management
+Create, update, view, and delete property listings with detailed info, images, and pricing.
+
+## 📋 Booking & Reservation System
+Users can book properties, view booking status, and manage reservations through a streamlined interface.
+
+## 🗂️ Project and Service Management
+Manage real estate projects, associated services (like maintenance), and their statuses.
+
+## 📬 Messaging System
+Enables in-app messaging between property managers and customers.
+
+## 📝 Review & Rating System
+Users can leave feedback and rate properties they’ve interacted with.
+
+## 🔍 Advanced Search & Filters
+Filter listings by location, price, availability, and amenities using fast, server-side search.
+
+## 🧾 Profile Management
+Users can manage their personal profiles, view activity history, and saved properties.
+
+## 🛠️ Admin Dashboard
+Powerful admin tools to manage users, listings, services, and analytics.
+
+## 📈 Performance & Scalability
+Built with FastAPI and React for responsiveness and ability to scale under growing traffic.
 ---
 
 ## Getting Started
@@ -77,3 +103,26 @@ npm install
 
 # Install backend dependencies using pip:
 pip install -r requirements.txt
+```
+
+### Usage
+```bash
+Run the project with:
+
+# Using npm:
+npm start
+
+# Using pip:
+python {entrypoint}
+```
+
+### Testing
+Real-estate-management uses the {test_framework} test framework. Run the test suite with:
+```bash
+# Using npm:
+npm test
+
+# Using pip:
+pytest
+```
+⬆ Return to top
